@@ -15,72 +15,14 @@ app.use(bodyParser.json());
 
 // Handle GET request to '/' endpoint
 app.get('/', (req, res) => {
-    // Send an HTML form as the response
-    res.send(`
-    
-<form method="post" action="/signup">
-    Email: <input type="email" name="email"><br>
-        Username: <input type="text" name="username"><br>
-            Password: <input type="password" id="password" name="password"><br>
-                Repeat Password: <input type="password" id="repeatPassword" name="repeatPassword"><br>
-                    Phone Number: <input type="tel" id="phoneNumber" name="phoneNumber" ><br>
-                        <div id="error"></div>
-                        <div id="errorPhone"></div>
-                        <input type="submit" value="Sign Up">
-                        </form>
-                        <script>
-    // Add event listener for input event on password fields
-                            document.getElementById("password").addEventListener("input", validatePassword);
-                       document.getElementById("repeatPassword").addEventListener("input", validatePassword);
-                            document.getElementById("phoneNumber").addEventListener("focusout", validatePhoneNumber);
-                            document.getElementById("phoneNumber").addEventListener("input", clearError);
 
+    res.sendfile("jsTest.html");
 
-                            // Validate function to check if passwords match
-
-       function validatePassword() {
-                                console.log("Checking Password");
-                            // Get the values of the password fields
-
-                            var password = document.getElementById("password").value;
-                            var repeatPassword = document.getElementById("repeatPassword").value;
-                            // Check if passwords match
-                            if(password !== repeatPassword){
-                                // If passwords do not match, display an error message
-                                document.getElementById("error").innerHTML = "Passwords do not match";
-        } else {
-                                // If passwords match, clear the error message
-                                document.getElementById("error").innerHTML = "";
-        }
-      }
-
-
-                            function clearError() {
-
-                                document.getElementById("errorPhone").innerHTML = "";
-                            }
-    //Validate the phone Number
- function validatePhoneNumber() {
-   console.log("Testing Phone Number");
-   var phoneNumber = document.getElementById("phoneNumber").value;
-   if(phoneNumber === ""){
-      return;
-   }
-   var phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-   if(phoneRegex.test(phoneNumber)){
-       document.getElementById("errorPhone").innerHTML = "";
-console.log("Passed");
-    } else {
-       document.getElementById("errorPhone").innerHTML = "PHNE NUMBER Not valid";
-       console.log("It failed...");
-    }
- }
-                        </script>
-  `);
 });
 
 // Handle POST request to '/signup' endpoint
 app.post('/signup', (req, res) => {
+    
   // Get the form data from the request body
   const { email, username, password, repeatPassword, phoneNumber } = req.body;
 
@@ -104,7 +46,9 @@ app.post('/signup', (req, res) => {
     })
 
   // Send a success message to the user
-  res.send(`Thank you for signing up, ${username}! Your details have been saved.`);
+    res.send(`Thank you for signing up, ${username}! Your details have been saved.`);
+    res.sendFile("sucsessPage.html");
+
 });
 
 // Start the server on port 3000
