@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 // Handle GET request to '/' endpoint
 app.get('/', (req, res) => {
 
-    res.sendfile("jsTest.html");
+    res.sendFile("jsTest.html");
 
 });
 
@@ -46,7 +46,8 @@ app.post('/signup', (req, res) => {
     })
 
   // Send a success message to the user
-    res.send(`Thank you for signing up, ${username}! Your details have been saved.`);
+   // res.send(`Thank you for signing up, ${username}! Your details have been saved.`);
+
     res.sendFile("sucsessPage.html");
 
 });
